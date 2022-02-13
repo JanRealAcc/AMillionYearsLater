@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">AMillionYearsLater</string>
+
+    <string-array name="municipality">
+        <item>Cagayan de Oro (Capital)</item>
+        <item>El Salvador</item>
+        <item>Opol</item>
+        <item>Gingoog</item>
+        <item>Tagoloan</item>
+        <item>Claveria</item>
+        <item>Laguindingan</item>
+        <item>Binuangan</item>
+        <item>Kinoguitan</item>
+        <item>Gitagum</item>
+        <item>Alubijid</item>
+        <item>Balingoan</item>
+        <item>Balingasag</item>
+        <item>Talisay</item>
+        <item>Manticao</item>
+        <item>Magsaysay</item>
+        <item>Lugait</item>
+        <item>Naawan</item>
+        <item>Salay</item>
+        <item>Libertad</item>
+        <item>Medina</item>
+        <item>Villanueva</item>
+        <item>Manolo</item>
+        <item>Malitbog</item>
+        <item>Impasug-ong</item>
+
+
+    </string-array>
+
+    <string-array name="course">
+        <item>SELECT COURSE</item>
+        <item>Bachelor of Science in Information Technology</item>
+        <item>Bachelor of Science in Information Technology</item>
+        <item>Bachelor Science in Computer Engineering</item>
+        <item>Bachelor of Science in Civil Engineering</item>
+        <item>Bachelor of Science in Civil Engineering</item>
+        <item>Bachelor of Science in Electrical Engineering</item>
+        <item>Bachelor of Elementary Education</item>
+        <item>Bachelor of Elementary Education</item>
+        <item>Bachelor of Secondary Education major in Mathematics</item>
+        <item>Bachelor of Secondary Education major in Filipino</item>
+        <item>Bachelor of Elementary Education Major in Early Childhood Education</item>
+        <item>Bachelor of Science in Hotel and Restaurant Management</item>
+        <item>Bachelor of Science in Accountancy</item>
+        <item>Bachelor of Science in Accounting Technology</item>
+        <item>Bachelor of Science in Business Administration Major in Financial Management</item>
+        <item>Bachelor of Science in Business Administration major in Marketing Management</item>
+        <item>Bachelor of Science in Tourism Management</item>
+        <item>Associate in Hotel and Restaurant Management</item>
+        <item>Bachelor of Science in Criminology</item>
+        <item>Bachelor of Science in Industrial Security Management</item>
+        <item>Bachelor of Science in Nursing</item>
+        <item>Bachelor of Science in Pharmacy</item>
+        <item>Bachelor of Science in Medical Technology</item>
+        <item>Bachelor of Arts in Communication</item>
+
+    </string-array>
+
+    <string-array name="yearLevel">
+        <item>SELECT YEAR</item>
+        <item>First Year</item>
+        <item>Second Year</item>
+        <item>Third Year</item>
+        <item>Fourth Year</item>
+        <item>Fifth Year</item>
+    </string-array>
+
+    <string-array name="vaccines">
+        <item>SELECT VACCINE</item>
+        <item>Pfizer BioNTech</item>
+        <item>Oxford AstraZeneca</item>
+        <item>CoronaVac Sinovac</item>
+        <item>Gamaleya Sputnik V</item>
+        <item>Johnson and Johnson`s Janssen</item>
+        <item>Bharat BioTech</item>
+        <item>Moderna</item>
+        <item>Sinopharm</item>
+    </string-array>
+
+</resources>

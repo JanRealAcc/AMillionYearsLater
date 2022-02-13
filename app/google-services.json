@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "199804850277",
+    "project_id": "amillionyearslater-7935e",
+    "storage_bucket": "amillionyearslater-7935e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199804850277:android:4ef8f904c94c62c3a6f68c",
+        "android_client_info": {
+          "package_name": "com.example.amillionyearslater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199804850277-obp063r2259p4jsk17bk9nuaamvvebu5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC42m3ZJ_F1y0U0TOrY11MPwf3YZeTpbIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "199804850277-obp063r2259p4jsk17bk9nuaamvvebu5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
