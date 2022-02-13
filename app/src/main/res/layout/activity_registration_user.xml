@@ -145,8 +145,14 @@
                 android:layout_height="wrap_content"
                 android:hint="SELECT DATE"
                 android:textColorHint="@color/white"
-                android:backgroundTint="#00000000"
+                android:backgroundTint="#FF001917"
                 android:id="@+id/btn_bDate"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bday"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="match_parent"
