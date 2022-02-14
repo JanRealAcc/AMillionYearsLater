@@ -184,23 +184,23 @@ public class RegistrationUser extends AppCompatActivity {
                     String userId = rUser.getUid();
                     databaseReference = FirebaseDatabase.getInstance("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId);
                     HashMap<String,String> hashMap = new HashMap<>();
-                    hashMap.put("userId",userId);
-                    hashMap.put("firstName",fName);
-                    hashMap.put("lastName",lName);
-                    hashMap.put("phoneNumber",phone);
-                    hashMap.put("age",age);
-                    hashMap.put("address",address);
-                    hashMap.put("city",city);
-                    hashMap.put("gender",gender);
-                    hashMap.put("email",email);
-                    hashMap.put("password",password);
-                    hashMap.put("course",course);
-                    hashMap.put("yearLevel",year_level);
-                    hashMap.put("schoolID",schoolId);
-                    hashMap.put("vaccine",vaccine);
-                    hashMap.put("vaccineDosage",dose);
-                    hashMap.put("birthDate", birthdate);
-                    hashMap.put("imageURL","default");
+                    hashMap.put("a: UserId",userId);
+                    hashMap.put("b: FirstName",fName);
+                    hashMap.put("c: LastName",lName);
+                    hashMap.put("d: PhoneNumber",phone);
+                    hashMap.put("e: Age",age);
+                    hashMap.put("f: Address",address);
+                    hashMap.put("g: City",city);
+                    hashMap.put("h: Gender",gender);
+                    hashMap.put("i: Email",email);
+                    hashMap.put("j: Password",password);
+                    hashMap.put("k: Course",course);
+                    hashMap.put("l: YearLevel",year_level);
+                    hashMap.put("m: SchoolID",schoolId);
+                    hashMap.put("n: Vaccine",vaccine);
+                    hashMap.put("o: VaccineDosage",dose);
+                    hashMap.put("p: BirthDate", birthdate);
+                    hashMap.put("q: ImageURL","default");
                     databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
