@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/drawable/backgroundcoc.xml" value="0.14" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/drawable/newbox.xml" value="0.2165" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/drawable/roundbox.xml" value="0.14" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/drawable/roundshape.xml" value="0.1795" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/drawable/shadoiw.xml" value="0.2165" />
         <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/font/anton.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/font/montserrat.xml" value="0.23958333333333334" />
-        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_main.xml" value="0.209375" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_registration_user.xml" value="0.209375" />
-        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_start.xml" value="0.209375" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_start.xml" value="0.33" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_start_qrcode.xml" value="0.33" />
       </map>
     </option>
   </component>

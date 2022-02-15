@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#014a43"
     tools:context=".RegistrationUser">
 
 
@@ -16,10 +15,11 @@
             android:layout_height="match_parent"
             android:paddingHorizontal="20dp"
             android:orientation="vertical"
-            android:layout_marginTop="30dp">
+            android:background="@drawable/backgroundcoc">
 
 
             <ImageView
+                android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/coc" />
