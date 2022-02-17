@@ -20,24 +20,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StartActivity extends AppCompatActivity {
 
-    private static final String TAG = "StartActivity";
-
-    private FirebaseDatabase database;
-    private FirebaseAuth mAuth;
-    private DatabaseReference databaseReference;
-    private String userId;
-
-
-    String email;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
-        Intent intent = getIntent();
-        email = intent.getStringExtra("email");
 
         TextView name = findViewById(R.id.name_here);
         TextView contact = findViewById(R.id.contact_here);
@@ -55,10 +43,9 @@ public class StartActivity extends AppCompatActivity {
         ImageView qrCODE = findViewById(R.id.user_QRCODE);
 
 
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        userId = user.getUid();
-        databaseReference = FirebaseDatabase.getInstance("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId);
+        String userId = user.getUid();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
