@@ -54,27 +54,25 @@
 
             <ImageView
                 android:id="@+id/user_QRCODE"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="30dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/finalblankqr"
-                tools:layout_editor_absoluteY="68dp"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="28dp" />
 
             <ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
                 android:paddingHorizontal="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView16"
-                app:layout_constraintEnd_toEndOf="@+id/imageView16"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="@+id/imageView16"
-                app:layout_constraintTop_toTopOf="@+id/imageView16"
-                app:layout_constraintVertical_bias="0.65999997"
+                app:layout_constraintEnd_toEndOf="@+id/user_QRCODE"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/user_QRCODE"
+                app:layout_constraintTop_toBottomOf="@+id/button5"
                 app:srcCompat="@drawable/newbox" />
 
             <TextView
@@ -421,21 +419,21 @@
                 android:layout_height="wrap_content"
                 android:text="SIGN OUT"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/user_QRCODE"
+                app:layout_constraintStart_toStartOf="@+id/user_QRCODE"
                 app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
             <Button
                 android:id="@+id/button5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="56dp"
+                android:layout_marginTop="8dp"
                 android:text="DOWNLOAD QR CODE"
                 android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/imageView11"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="@+id/imageView15"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="@+id/imageView15"
+                app:layout_constraintTop_toBottomOf="@+id/imageView15" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
