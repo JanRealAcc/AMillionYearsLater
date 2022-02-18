@@ -1,9 +1,14 @@
 package com.example.amillionyearslater;
 
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.TRANSPARENT;
+import static android.graphics.Color.WHITE;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -17,6 +22,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+
+import java.util.Locale;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -39,8 +50,10 @@ public class StartActivity extends AppCompatActivity {
         TextView year = findViewById(R.id.year_here);
         TextView vaccine = findViewById(R.id.vaccine_here);
         TextView dose = findViewById(R.id.dose_here);
-        TextView welcome = findViewById(R.id.textView);
-        ImageView qrCODE = findViewById(R.id.user_QRCODE);
+        TextView welcome = findViewById(R.id.welcomeText);
+        TextView qrCODE_code = findViewById(R.id.qrcode_code);
+        ImageView qrCODE_image = findViewById(R.id.user_QRCODE);
+
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -49,6 +62,7 @@ public class StartActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 String userId = snapshot.child("userId").getValue(String.class);
                 String firstNameU = snapshot.child("firstName").getValue(String.class);
                 String lastNameU = snapshot.child("lastName").getValue(String.class);
@@ -82,6 +96,13 @@ public class StartActivity extends AppCompatActivity {
                 vaccine.setText(vaccineU);
                 dose.setText(vaccineDosageU);
                 welcome.setText(welcomeU);
+                qrCODE_code.setText(userId);
+
+
+                String fullQrCode = userId + schoolIdU + firstNameU.toUpperCase() + lastNameU.toUpperCase();
+                Bitmap qrCode = createBitmap(fullQrCode);
+                qrCODE_image.setImageBitmap(qrCode);
+
 
             }
 
@@ -90,6 +111,28 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private Bitmap createBitmap(String userId) {
+        BitMatrix result = null;
+        try {
+            result = new MultiFormatWriter().encode(userId, BarcodeFormat.QR_CODE, 1000,1000,null);
+        } catch (WriterException e){
+            e.printStackTrace();
+            return null;
+        }
+        int width = result.getWidth();
+        int height = result.getHeight();
+        int[] pixels = new int[width * height];
+        for (int x=0; x<height; x++){
+            int offset= x * width;
+            for (int k=0; k<width; k++){
+                pixels[offset + k] = result.get(k, x) ? BLACK : TRANSPARENT;
+            }
+        }
+        Bitmap myBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        myBitmap.setPixels(pixels, 0, width,0,0, width, height);
+        return myBitmap;
     }
 }
 

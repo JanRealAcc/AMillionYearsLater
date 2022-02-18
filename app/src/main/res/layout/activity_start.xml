@@ -8,427 +8,434 @@
     tools:context=".StartActivity">
 
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/welcomeText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:paddingHorizontal="30dp"
+                android:text="WELCOME $user!"
+                android:textColor="#efeb00"
+                app:autoSizePresetSizes="@array/autosize_text_sizes"
+                app:layout_constraintBottom_toTopOf="@+id/imageView15"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/imageView16"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="212dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="180dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView9"
+                app:layout_constraintTop_toTopOf="@+id/imageView15"
                 app:srcCompat="@drawable/roundbox" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imageView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-                app:layout_constraintEnd_toEndOf="@+id/imageView9"
-                app:layout_constraintStart_toStartOf="@+id/imageView9"
-                app:layout_constraintTop_toTopOf="@+id/imageView9"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/shadoiw" />
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
-                app:layout_constraintVertical_bias="0.018"
+                app:layout_constraintBottom_toBottomOf="@+id/user_QRCODE"
+                app:layout_constraintEnd_toEndOf="@+id/user_QRCODE"
+                app:layout_constraintStart_toStartOf="@+id/user_QRCODE"
+                app:layout_constraintTop_toTopOf="@+id/user_QRCODE"
                 app:srcCompat="@drawable/roundshape" />
 
             <ImageView
                 android:id="@+id/user_QRCODE"
-                android:layout_width="750px"
-                android:layout_height="750px"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-                app:layout_constraintEnd_toEndOf="@+id/imageView9"
-                app:layout_constraintStart_toStartOf="@+id/imageView9"
-                app:layout_constraintTop_toTopOf="@+id/imageView9"
-                app:srcCompat="@drawable/blankqr" />
-
-            <TextView
-                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:text="WELCOME $user!"
-                android:textColor="#efeb00"
-                android:textSize="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:padding="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.01999998" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="DOWNLOAD QRCODE"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+                app:srcCompat="@drawable/finalblankqr"
+                tools:layout_editor_absoluteY="68dp"
+                tools:ignore="MissingConstraints" />
 
             <ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/newbox"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button2"
-                app:layout_constraintVertical_bias="0.039" />
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView16"
+                app:layout_constraintEnd_toEndOf="@+id/imageView16"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="@+id/imageView16"
+                app:layout_constraintTop_toTopOf="@+id/imageView16"
+                app:layout_constraintVertical_bias="0.65999997"
+                app:srcCompat="@drawable/newbox" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/qrcode_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="YOUR PROFILE"
-                android:textColor="#80000000"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:layout_marginBottom="88dp"
+                android:text="qrcode_here"
+                android:textColor="#40000000"
+                android:textSize="10dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView11"
                 app:layout_constraintEnd_toEndOf="@+id/imageView11"
-                app:layout_constraintHorizontal_bias="0.49"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toTopOf="@+id/imageView11"
-                app:layout_constraintVertical_bias="0.04000002" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Address:"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-            <TextView
-                android:id="@+id/address_here"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:text="address_here"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="City:"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-            <TextView
-                android:id="@+id/city_here"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:text="city_here"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="Full name:"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-            <TextView
-                android:id="@+id/name_here"
-                android:layout_width="wrap_content"
-                android:layout_height="16dp"
-                android:layout_marginStart="96dp"
-                android:text="name_here"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toTopOf="@+id/textView4" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="291dp"
-                android:layout_height="46dp"
-                android:text="LOG OUT"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView11"
-                app:layout_constraintVertical_bias="0.612" />
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Gender:"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-            <TextView
-                android:id="@+id/gender_here"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:text="gender_here"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Age:"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-            <TextView
-                android:id="@+id/age_here"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:text="age_here"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Birthdate:"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <TextView
-                android:id="@+id/bday_here"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:text="bday_here"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <TextView
-                android:id="@+id/sid_here"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:layout_marginTop="32dp"
-                android:text="sid_here"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <TextView
-                android:id="@+id/course_here"
-                android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:layout_marginLeft="116dp"
-                android:layout_marginTop="48dp"
-                android:layout_marginRight="35dp"
-                android:autoSizePresetSizes="@array/autosize_text_sizes"
-                android:gravity="center_vertical"
-                android:text="course_here"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toTopOf="@+id/year_here"
-                app:layout_constraintEnd_toEndOf="@+id/imageView11"
-                app:layout_constraintHorizontal_bias="0.333"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView10"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/year_here"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:layout_marginTop="64dp"
-                android:text="year_here"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <TextView
-                android:id="@+id/vaccine_here"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:layout_marginTop="96dp"
-                android:text="vaccine_here"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <TextView
-                android:id="@+id/dose_here"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:layout_marginTop="112dp"
-                android:text="dose_here"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:text="School ID:"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Course:"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Year:"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:text="Vaccine:"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Dose:"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="28dp"
-                android:text="Contacts:"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-            <TextView
-                android:id="@+id/contact_here"
-                android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="116dp"
-                android:layout_marginRight="35dp"
-                android:gravity="center_vertical"
-                android:text="phoneNumber_and_email_here"
-                android:autoSizePresetSizes="@array/autosize_text_sizes"
-                android:textColor="#80000000"
-                android:textSize="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toBottomOf="@+id/dose_here" />
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="@+id/imageView11" />
 
             <TextView
                 android:id="@+id/textView31"
                 android:layout_width="114dp"
                 android:layout_height="24dp"
+                android:layout_marginStart="140dp"
+                android:layout_marginEnd="141dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/shadoiw"
                 android:gravity="center"
                 android:text="EDIT PROFILE"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+                app:layout_constraintEnd_toEndOf="@+id/imageView16"
+                app:layout_constraintStart_toStartOf="@+id/imageView16" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="YOUR PROFILE"
+                android:textColor="#80000000"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/imageView11"
-                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="@+id/imageView11"
-                app:layout_constraintTop_toTopOf="@+id/imageView11"
-                app:layout_constraintVertical_bias="0.96" />
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="80dp"
+                android:text="Address:"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/address_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="80dp"
+                android:text="address_here"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="96dp"
+                android:text="City:"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/city_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="96dp"
+                android:text="city_here"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="64dp"
+                android:text="Full name:"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/name_here"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="64dp"
+                android:text="name_here"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="112dp"
+                android:text="Gender:"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/gender_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="112dp"
+                android:text="gender_here"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="128dp"
+                android:text="Age:"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/age_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="128dp"
+                android:text="age_here"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="144dp"
+                android:text="Birthdate:"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/bday_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="144dp"
+                android:text="bday_here"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/sid_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="176dp"
+                android:text="sid_here"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/course_here"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="192dp"
+                android:layout_marginRight="35dp"
+                android:autoSizePresetSizes="@array/autosize_text_sizes"
+                android:gravity="center_vertical"
+                android:text="course_here"
+                android:textColor="#80000000"
+                app:layout_constraintEnd_toEndOf="@+id/imageView11"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/contact_here"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="300dp"
+                android:layout_marginRight="35dp"
+                android:autoSizePresetSizes="@array/autosize_text_sizes"
+                android:gravity="center_vertical"
+                android:text="contacts_and_email_here"
+                android:textColor="#80000000"
+                app:layout_constraintEnd_toEndOf="@+id/imageView11"
+                app:layout_constraintHorizontal_bias="0.859"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/year_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="208dp"
+                android:text="year_here"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/vaccine_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="240dp"
+                android:text="vaccine_here"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/dose_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="256dp"
+                android:text="dose_here"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="176dp"
+                android:text="School ID:"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="192dp"
+                android:text="Course:"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="208dp"
+                android:text="Year:"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="240dp"
+                android:text="Vaccine:"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="256dp"
+                android:text="Dose:"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="300dp"
+                android:text="Contacts:"
+                android:textColor="#80000000"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SIGN OUT"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp"
+                android:text="DOWNLOAD QR CODE"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/imageView11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
