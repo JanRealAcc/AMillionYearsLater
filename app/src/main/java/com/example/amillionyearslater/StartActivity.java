@@ -1,7 +1,7 @@
 package com.example.amillionyearslater;
 
 import static android.graphics.Color.BLACK;
-import static android.graphics.Color.GREEN;
+import static android.graphics.Color.BLUE;
 import static android.graphics.Color.TRANSPARENT;
 import static android.graphics.Color.WHITE;
 
@@ -11,9 +11,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Environment;
@@ -32,33 +34,37 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class StartActivity extends AppCompatActivity {
 
 
-    private ImageView qrCODE_image,download_QRCODE;
+    private ImageView qrCODE_image, download_QRCODE;
     private OutputStream outputStream;
+    private ImageView imageViewBitmap;
 
 
     @Override
 
-        //OPEN ME
-        protected void onCreate(Bundle savedInstanceState) {
+    //OPEN ME
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        //Declare FindViewId para ma display or makuha ang value sa interface
+        //Declare FindViewId para ma display or retrieve ang value sa interface
         TextView name = findViewById(R.id.name_here);
         TextView contact = findViewById(R.id.contact_here);
         TextView address = findViewById(R.id.address_here);
@@ -126,12 +132,15 @@ public class StartActivity extends AppCompatActivity {
                 welcome.setText(welcomeU);
                 qrCODE_code.setText(userId);
 
-                String fullQrCode = userId + schoolIdU + firstNameU.toUpperCase() + lastNameU.toUpperCase();
-                Bitmap qrCode = createBitmap(fullQrCode);
-                Bitmap qrCode2 = createBitmap2(fullQrCode);
-                qrCODE_image.setImageBitmap(qrCode);
-                download_QRCODE.setImageBitmap(qrCode2);
-
+                try {
+                    String fullQrCode = userId + schoolIdU + firstNameU.toUpperCase() + lastNameU.toUpperCase();
+                    Bitmap qrCode = displayBitmap(fullQrCode);
+                    Bitmap qrCode2 = downloadBitmap(fullQrCode);
+                    qrCODE_image.setImageBitmap(qrCode);
+                    download_QRCODE.setImageBitmap(qrCode2);
+                } catch (Exception ex) {
+                    Log.e("QrGenerate", ex.getMessage());
+                }
 
             }
 
@@ -141,18 +150,16 @@ public class StartActivity extends AppCompatActivity {
         });
 
 
-
-
         Button save_QRCODE = (Button) findViewById(R.id.save_QRCODE);
         save_QRCODE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(ContextCompat.checkSelfPermission(StartActivity.this,
+                if (ContextCompat.checkSelfPermission(StartActivity.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
-                        PackageManager.PERMISSION_GRANTED){
+                        PackageManager.PERMISSION_GRANTED) {
 
                     saveToGallery();
-                }else{
+                } else {
 
                     askPermission();
                 }
@@ -161,41 +168,11 @@ public class StartActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-        }
-
-
+    }
 
 
     //QR TO SCREEN DISPLAY
-    private Bitmap createBitmap(String fullQrCode) {
-        BitMatrix result = null;
-        try {
-            result = new MultiFormatWriter().encode(fullQrCode, BarcodeFormat.QR_CODE, 1000,1000,null);
-        } catch (WriterException e){
-            e.printStackTrace();
-            return null;
-        }
-        int width = result.getWidth();
-        int height = result.getHeight();
-        int[] pixels = new int[width * height];
-        for (int x=0; x<height; x++){
-            int offset= x * width;
-            for (int k=0; k<width; k++){
-                pixels[offset + k] = result.get(k, x) ? GREEN : TRANSPARENT ;
-            }
-        }
-        Bitmap myBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        myBitmap.setPixels(pixels,0, width,0,0, width, height);
-        return myBitmap;
-    }
-    //QR TO DOWNLOADABLE IMAGE
-    private Bitmap createBitmap2(String fullQrCode) {
+    private Bitmap downloadBitmap(String fullQrCode) {
         BitMatrix result = null;
         try {
             result = new MultiFormatWriter().encode(fullQrCode, BarcodeFormat.QR_CODE, 1000,1000,null);
@@ -214,6 +191,53 @@ public class StartActivity extends AppCompatActivity {
         }
         Bitmap myBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         myBitmap.setPixels(pixels,0, width,0,0, width, height);
+            //setting bitmap to image view
+            Bitmap overlay = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+
+            return mergeBitmaps(overlay, myBitmap);
+
+    }
+    private Bitmap mergeBitmaps(Bitmap overlay, Bitmap myBitmap){
+
+            int height = myBitmap.getHeight();
+            int width = myBitmap.getWidth();
+
+            Bitmap combined = Bitmap.createBitmap(width, height, myBitmap.getConfig());
+            Canvas canvas = new Canvas(combined);
+            int canvasWidth = canvas.getWidth();
+            int canvasHeight = canvas.getHeight();
+
+            canvas.drawBitmap(myBitmap, new Matrix(), null);
+
+            int centreX = (canvasWidth - overlay.getWidth()) / 2;
+            int centreY = (canvasHeight - overlay.getHeight()) / 2;
+            canvas.drawBitmap(overlay, centreX, centreY, null);
+
+            return combined;
+        }
+
+
+    //QR TO DOWNLOADABLE IMAGE
+    private Bitmap displayBitmap(String fullQrCode) {
+        BitMatrix result = null;
+        try {
+            result = new MultiFormatWriter().encode(fullQrCode, BarcodeFormat.QR_CODE, 1000,1000,null);
+        } catch (WriterException e){
+            e.printStackTrace();
+            return null;
+        }
+        int width = result.getWidth();
+        int height = result.getHeight();
+        int[] pixels = new int[width * height];
+        for (int x=0; x<height; x++){
+            int offset= x * width;
+            for (int k=0; k<width; k++){
+                pixels[offset + k] = result.get(k, x) ? BLACK : TRANSPARENT ;
+            }
+        }
+        Bitmap myBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        myBitmap.setPixels(pixels,0, width,0,0, width, height);
+
         return myBitmap;
 
     }

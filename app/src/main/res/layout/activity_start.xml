@@ -7,6 +7,13 @@
     android:background="@drawable/backgroundcoc"
     tools:context=".StartActivity">
 
+    <ImageView
+        android:id="@+id/download_QRCODE"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/finalblankqr"
+        tools:ignore="MissingConstraints" />
 
 
     <ScrollView
@@ -63,13 +70,7 @@
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteY="28dp" />
 
-            <ImageView
-                android:id="@+id/download_QRCODE"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/finalblankqr"
-                tools:ignore="MissingConstraints" />
+
 
             <ImageView
                 android:id="@+id/imageView11"
