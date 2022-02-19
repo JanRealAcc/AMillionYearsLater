@@ -1,16 +1,25 @@
 package com.example.amillionyearslater;
 
 import static android.graphics.Color.BLACK;
+import static android.graphics.Color.GREEN;
 import static android.graphics.Color.TRANSPARENT;
 import static android.graphics.Color.WHITE;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,17 +36,29 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Locale;
+import java.util.Objects;
 
 public class StartActivity extends AppCompatActivity {
 
 
+    private ImageView qrCODE_image,download_QRCODE;
+    private OutputStream outputStream;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+
+        //OPEN ME
+        protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+        //Declare FindViewId para ma display or makuha ang value sa interface
         TextView name = findViewById(R.id.name_here);
         TextView contact = findViewById(R.id.contact_here);
         TextView address = findViewById(R.id.address_here);
@@ -52,12 +73,19 @@ public class StartActivity extends AppCompatActivity {
         TextView dose = findViewById(R.id.dose_here);
         TextView welcome = findViewById(R.id.welcomeText);
         TextView qrCODE_code = findViewById(R.id.qrcode_code);
-        ImageView qrCODE_image = findViewById(R.id.user_QRCODE);
+        qrCODE_image = findViewById(R.id.user_QRCODE);
+        download_QRCODE = findViewById(R.id.download_QRCODE);
 
 
+        /*
+                PROGRAM 2 - DATABASE
+
+                - Dari mahitabo ang pag store sa information or value nga makuha sa interface.
+                - Dari mahitabo ang pag retrieve sa information or value nga makuha sa database.
+        */
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String userId = user.getUid();
+        String userId = Objects.requireNonNull(user).getUid();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -98,10 +126,11 @@ public class StartActivity extends AppCompatActivity {
                 welcome.setText(welcomeU);
                 qrCODE_code.setText(userId);
 
-
                 String fullQrCode = userId + schoolIdU + firstNameU.toUpperCase() + lastNameU.toUpperCase();
                 Bitmap qrCode = createBitmap(fullQrCode);
+                Bitmap qrCode2 = createBitmap2(fullQrCode);
                 qrCODE_image.setImageBitmap(qrCode);
+                download_QRCODE.setImageBitmap(qrCode2);
 
 
             }
@@ -111,12 +140,43 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-    }
 
-    private Bitmap createBitmap(String userId) {
+
+
+        Button save_QRCODE = (Button) findViewById(R.id.save_QRCODE);
+        save_QRCODE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(ContextCompat.checkSelfPermission(StartActivity.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+                        PackageManager.PERMISSION_GRANTED){
+
+                    saveToGallery();
+                }else{
+
+                    askPermission();
+                }
+
+            }
+        });
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+    //QR TO SCREEN DISPLAY
+    private Bitmap createBitmap(String fullQrCode) {
         BitMatrix result = null;
         try {
-            result = new MultiFormatWriter().encode(userId, BarcodeFormat.QR_CODE, 1000,1000,null);
+            result = new MultiFormatWriter().encode(fullQrCode, BarcodeFormat.QR_CODE, 1000,1000,null);
         } catch (WriterException e){
             e.printStackTrace();
             return null;
@@ -127,12 +187,120 @@ public class StartActivity extends AppCompatActivity {
         for (int x=0; x<height; x++){
             int offset= x * width;
             for (int k=0; k<width; k++){
-                pixels[offset + k] = result.get(k, x) ? BLACK : TRANSPARENT;
+                pixels[offset + k] = result.get(k, x) ? GREEN : TRANSPARENT ;
             }
         }
         Bitmap myBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        myBitmap.setPixels(pixels, 0, width,0,0, width, height);
+        myBitmap.setPixels(pixels,0, width,0,0, width, height);
         return myBitmap;
+    }
+    //QR TO DOWNLOADABLE IMAGE
+    private Bitmap createBitmap2(String fullQrCode) {
+        BitMatrix result = null;
+        try {
+            result = new MultiFormatWriter().encode(fullQrCode, BarcodeFormat.QR_CODE, 1000,1000,null);
+        } catch (WriterException e){
+            e.printStackTrace();
+            return null;
+        }
+        int width = result.getWidth();
+        int height = result.getHeight();
+        int[] pixels = new int[width * height];
+        for (int x=0; x<height; x++){
+            int offset= x * width;
+            for (int k=0; k<width; k++){
+                pixels[offset + k] = result.get(k, x) ? BLACK : WHITE ;
+            }
+        }
+        Bitmap myBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        myBitmap.setPixels(pixels,0, width,0,0, width, height);
+        return myBitmap;
+
+    }
+
+
+    //PERMISSION
+    private void askPermission() {
+        ActivityCompat.requestPermissions(StartActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1)
+        {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                saveToGallery();
+            }else {
+                Toast.makeText(StartActivity.this,"Please provide the required permissions",Toast.LENGTH_SHORT).show();
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    //DOWNLOAD QRCODE
+    private void saveToGallery(){
+
+            File dir =  Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+
+            if(!dir.exists()){
+                dir.mkdirs();
+            }
+
+            BitmapDrawable drawable = (BitmapDrawable) download_QRCODE.getDrawable();
+            Bitmap bitmap = drawable.getBitmap();
+            File file = new File(dir, System.currentTimeMillis()+".png");
+            try {
+               outputStream = new FileOutputStream(file);
+             } catch (FileNotFoundException e) {
+               e.printStackTrace();
+            }
+            bitmap.compress(Bitmap.CompressFormat.PNG,100,outputStream);
+            Toast.makeText(StartActivity.this, "QR code saved!", Toast.LENGTH_SHORT).show();
+
+            try{
+                outputStream.flush();
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+            try {
+            outputStream.close();
+            } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+       /* BitmapDrawable bitmapDrawable = (BitmapDrawable) qrCODE_image.getDrawable();
+        Bitmap bitmap = bitmapDrawable.getBitmap();
+
+        FileOutputStream outputStream = null;
+        File file = Environment.getExternalStorageDirectory();
+        File dir = new File(file.getAbsolutePath() + "/MyPics");
+        dir.exists();
+
+        String filename = String.format("%d.png",System.currentTimeMillis());
+        File outFile = new File(dir,filename);
+        try{
+            outputStream = new FileOutputStream(outFile);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,outputStream);
+        try{
+            outputStream.flush();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        try{
+            outputStream.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }*/
     }
 }
 
