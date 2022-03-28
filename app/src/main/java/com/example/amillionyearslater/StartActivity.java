@@ -133,7 +133,7 @@ public class StartActivity extends AppCompatActivity {
                 qrCODE_code.setText(userId);
 
                 try {
-                    String fullQrCode = userId + schoolIdU + firstNameU.toUpperCase() + lastNameU.toUpperCase();
+                    String fullQrCode = userId + schoolIdU + firstNameU.toUpperCase().trim() + lastNameU.toUpperCase().trim();
                     Bitmap qrCode = displayBitmap(fullQrCode);
                     Bitmap qrCode2 = downloadBitmap(fullQrCode);
                     qrCODE_image.setImageBitmap(qrCode);

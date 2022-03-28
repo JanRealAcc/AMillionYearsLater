@@ -30,6 +30,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -38,9 +39,10 @@ public class RegistrationUser extends AppCompatActivity {
     private TextView banner;
     private EditText editFNAME, editLNAME, editEMAIL, editPHONE, editPASSWORD, editAGE, editADDRESS, editSCHOOLID;
     private EditText editBIRTHDATE;
+    private Button bDate;
     private ProgressBar progressLoading;
     private DatabaseReference databaseReference;
-    private DatePickerDialog picker;
+    private DatePickerDialog dateDialog;
     private FirebaseDatabase database;
 
 
@@ -97,6 +99,7 @@ public class RegistrationUser extends AppCompatActivity {
         editPHONE = (EditText) findViewById(R.id.et_phone);
         editPASSWORD = (EditText) findViewById(R.id.et_password);
         editAGE = (EditText) findViewById(R.id.et_age);
+        editAGE.setEnabled(false);
         editADDRESS = (EditText) findViewById(R.id.et_address);
         editSCHOOLID = (EditText) findViewById(R.id.et_schoolID);
         progressLoading = (ProgressBar) findViewById(R.id.loading);
@@ -106,25 +109,7 @@ public class RegistrationUser extends AppCompatActivity {
         Button buttonBIRTHDATE = (Button) findViewById(R.id.btn_bDate);
 
         editBIRTHDATE = (EditText) findViewById(R.id.bday);
-        final Calendar calendar = Calendar.getInstance();
-        final int year = calendar.get(Calendar.YEAR);
-        final int month = calendar.get(Calendar.MONTH);
-        final int day = calendar.get(Calendar.DAY_OF_MONTH);
-        buttonBIRTHDATE.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                picker = new DatePickerDialog(RegistrationUser.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        month = month+1;
-                        String birthdate = month+"/"+dayOfMonth+"/"+year;
-                        buttonBIRTHDATE.setHint(birthdate);
-                        editBIRTHDATE.setText(birthdate);
-                    }
-                },year , month, day);
-                picker.show();
-            }
-        });
+        bDate();
 
         buttonSUBMIT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,7 +142,7 @@ public class RegistrationUser extends AppCompatActivity {
                             TextUtils.isEmpty(phone) || TextUtils.isEmpty(password) || TextUtils.isEmpty(age) ||
                             TextUtils.isEmpty(address) || TextUtils.isEmpty(schoolId) || city.equals("SELECT CITY") ||
                             course.equals("SELECT COURSE") || year_level.equals("SELECT YEAR") || vaccine.equals("SELECT VACCINE") ||
-                            birthdate.equals("SELECT DATE")) {
+                            birthdate.equals("SELECT DATE") || TextUtils.isEmpty(birthdate)){
                         Toast.makeText(RegistrationUser.this, "All fields are required! My goodness!", Toast.LENGTH_LONG).show();
                     } else {
                         registerStudent(fName, lName, email, phone, password, age, address, schoolId, gender, dose, city, course,
@@ -170,6 +155,53 @@ public class RegistrationUser extends AppCompatActivity {
         });
 
     }
+
+    private void bDate() {
+        bDate = (Button) findViewById(R.id.btn_bDate);
+        final Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        bDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dateDialog = new DatePickerDialog(view.getContext(), datePickerListener, year, month, day);
+                dateDialog.getDatePicker().setMaxDate(new Date().getTime());
+                dateDialog.show();
+            }
+        });
+    }
+    private final DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.YEAR, year);
+            c.set(Calendar.MONTH, month);
+            c.set(Calendar.DAY_OF_MONTH, day);
+            editAGE.setText(Integer.toString(calculateAge(c.getTimeInMillis())));
+            month = month+1;
+            String birthdate = month+"/"+day+"/"+year;
+                        /*
+                          ANG KANING 'bDate_Button.setHint(birthdate)' DARI MA CHANGE TONG TEXT
+                          FROM "BUTTON NGA WORD" TO "ILANG BIRTHDATE"
+                        */
+            bDate.setHint(birthdate);
+
+        }
+    };
+    int calculateAge(long date){
+        Calendar dob = Calendar.getInstance();
+        dob.setTimeInMillis(date);
+
+        Calendar today = Calendar.getInstance();
+        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+        if(today.get(Calendar.DAY_OF_MONTH) < dob.get(Calendar.DAY_OF_MONTH)){
+            age--;
+        }
+        return age;
+    }
+
 
     private void registerStudent(String fName, String lName, String email, String phone, String password, String age, String address,
                                  String schoolId, String gender, String dose, String city, String course, String year_level, String vaccine,
