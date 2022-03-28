@@ -92,7 +92,7 @@ public class RegistrationUser extends AppCompatActivity {
         });
 
 
-        //VARIABLES FOR REGISTRATION
+        //ASSIGN ID to VARIABLES.
         editFNAME = (EditText) findViewById(R.id.et_fName);
         editLNAME = (EditText) findViewById(R.id.et_lName);
         editEMAIL = (EditText) findViewById(R.id.et_email);
