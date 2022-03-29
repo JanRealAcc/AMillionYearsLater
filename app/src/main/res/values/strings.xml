@@ -2,6 +2,7 @@
     <string name="app_name">AMillionYearsLater</string>
 
     <string-array name="municipality">
+        <item>SELECT CITY</item>
         <item>Cagayan de Oro (Capital)</item>
         <item>El Salvador</item>
         <item>Opol</item>

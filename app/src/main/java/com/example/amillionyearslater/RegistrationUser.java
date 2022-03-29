@@ -37,10 +37,10 @@ import java.util.Objects;
 public class RegistrationUser extends AppCompatActivity {
 
     private TextView banner;
-    private EditText editFNAME, editLNAME, editEMAIL, editPHONE, editPASSWORD, editAGE, editADDRESS, editSCHOOLID;
-    private EditText editBIRTHDATE;
-    private Button bDate;
+    private EditText editFNAME, editLNAME, editMNAME, editEMAIL, editPHONE, editPASSWORD, editAGE, editADDRESS, editSCHOOLID;
+    private EditText edit_birthdate;
     private ProgressBar progressLoading;
+    private Button bDate;
     private DatabaseReference databaseReference;
     private DatePickerDialog dateDialog;
     private FirebaseDatabase database;
@@ -94,6 +94,7 @@ public class RegistrationUser extends AppCompatActivity {
 
         //ASSIGN ID to VARIABLES.
         editFNAME = (EditText) findViewById(R.id.et_fName);
+        editMNAME = (EditText) findViewById(R.id.et_mName);
         editLNAME = (EditText) findViewById(R.id.et_lName);
         editEMAIL = (EditText) findViewById(R.id.et_email);
         editPHONE = (EditText) findViewById(R.id.et_phone);
@@ -106,21 +107,22 @@ public class RegistrationUser extends AppCompatActivity {
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_gender);
         RadioGroup radioGroup1 = (RadioGroup) findViewById(R.id.radio_dose);
         Button buttonSUBMIT = (Button) findViewById(R.id.btn_submit);
-        Button buttonBIRTHDATE = (Button) findViewById(R.id.btn_bDate);
 
-        editBIRTHDATE = (EditText) findViewById(R.id.bday);
+        bDate = (Button) findViewById(R.id.btn_bDate);
+        edit_birthdate = (EditText) findViewById(R.id.bday);
         bDate();
 
         buttonSUBMIT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String fName = editFNAME.getText().toString().trim();
-                final String lName = editLNAME.getText().toString().trim();
-                final String email = editEMAIL.getText().toString().trim();
-                final String phone = editPHONE.getText().toString().trim();
-                final String password = editPASSWORD.getText().toString().trim();
+                final String firstname = editFNAME.getText().toString().trim();
+                final String middlename = editMNAME.getText().toString().trim();
+                final String lastname = editLNAME.getText().toString().trim();
+                final String u_email = editEMAIL.getText().toString().trim();
+                final String phoneNumber = editPHONE.getText().toString().trim();
+                final String u_password = editPASSWORD.getText().toString().trim();
                 final String age = editAGE.getText().toString().trim();
-                final String address = editADDRESS.getText().toString().trim();
+                final String u_address = editADDRESS.getText().toString().trim();
                 final String schoolId = editSCHOOLID.getText().toString().trim();
                 int checkedGENDER = radioGroup.getCheckedRadioButtonId();
                 int checkedDOSE = radioGroup1.getCheckedRadioButtonId();
@@ -130,34 +132,54 @@ public class RegistrationUser extends AppCompatActivity {
                 String course = spinnerCourse.getSelectedItem().toString();
                 String year_level = spinnerYearLevel.getSelectedItem().toString();
                 String vaccine = spinnerVaccines.getSelectedItem().toString();
-                final String birthdate = editBIRTHDATE.getText().toString();
-                if (selectedGENDER == null) {
-                    Toast.makeText(RegistrationUser.this, "Please select a gender", Toast.LENGTH_LONG).show();
-                } else if (selectedDOSE == null) {
-                    Toast.makeText(RegistrationUser.this, "Please select a vaccine", Toast.LENGTH_LONG).show();
+                final String birthdate = edit_birthdate.getText().toString();
+
+                if (TextUtils.isEmpty(firstname)){
+                    Toast.makeText(RegistrationUser.this, "Please fill in your firstname!", Toast.LENGTH_LONG).show();
+                }else if (TextUtils.isEmpty(middlename)){
+                    Toast.makeText(RegistrationUser.this, "Please fill in your middlename!", Toast.LENGTH_LONG).show();
+                }else if (TextUtils.isEmpty(lastname)) {
+                    Toast.makeText(RegistrationUser.this, "Please fill in your lastname!", Toast.LENGTH_LONG).show();
+                }else if (TextUtils.isEmpty(u_email)) {
+                    Toast.makeText(RegistrationUser.this, "Please fill in your email!", Toast.LENGTH_LONG).show();
+                }else if (TextUtils.isEmpty(phoneNumber)) {
+                    Toast.makeText(RegistrationUser.this, "Please fill in your phone number!", Toast.LENGTH_LONG).show();
+                }else if (TextUtils.isEmpty(u_password)) {
+                    Toast.makeText(RegistrationUser.this, "Please fill in your password!", Toast.LENGTH_LONG).show();
+                }else if (TextUtils.isEmpty(age)) {
+                    Toast.makeText(RegistrationUser.this, "Please select your birthdate!", Toast.LENGTH_LONG).show();
+                }else if (selectedGENDER == null) {
+                    Toast.makeText(RegistrationUser.this, "Please select your gender!", Toast.LENGTH_LONG).show();
+                }else if (TextUtils.isEmpty(u_address)) {
+                    Toast.makeText(RegistrationUser.this, "Please fill in your address!", Toast.LENGTH_LONG).show();
+                }else if (city.equals("SELECT CITY")) {
+                    Toast.makeText(RegistrationUser.this, "Please select your municipality!", Toast.LENGTH_LONG).show();
+                }else if (TextUtils.isEmpty(schoolId)) {
+                    Toast.makeText(RegistrationUser.this, "Please fill in your school ID number!", Toast.LENGTH_LONG).show();
+                }else if (course.equals("SELECT COURSE")) {
+                    Toast.makeText(RegistrationUser.this, "Please select your course!", Toast.LENGTH_LONG).show();
+                }else if (year_level.equals("SELECT YEAR")) {
+                    Toast.makeText(RegistrationUser.this, "Please select your year level!", Toast.LENGTH_LONG).show();
+                }else if (vaccine.equals("SELECT VACCINE")) {
+                    Toast.makeText(RegistrationUser.this, "Please select your vaccine!", Toast.LENGTH_LONG).show();
+                }else if (selectedDOSE == null) {
+                    Toast.makeText(RegistrationUser.this, "Please select your number of dose!", Toast.LENGTH_LONG).show();
                 } else {
-                    final String gender = selectedGENDER.getText().toString();
                     final String dose = selectedDOSE.getText().toString();
-                    if (TextUtils.isEmpty(fName) || TextUtils.isEmpty(lName) || TextUtils.isEmpty(email) ||
-                            TextUtils.isEmpty(phone) || TextUtils.isEmpty(password) || TextUtils.isEmpty(age) ||
-                            TextUtils.isEmpty(address) || TextUtils.isEmpty(schoolId) || city.equals("SELECT CITY") ||
-                            course.equals("SELECT COURSE") || year_level.equals("SELECT YEAR") || vaccine.equals("SELECT VACCINE") ||
-                            birthdate.equals("SELECT DATE") || TextUtils.isEmpty(birthdate)){
-                        Toast.makeText(RegistrationUser.this, "All fields are required! My goodness!", Toast.LENGTH_LONG).show();
-                    } else {
-                        registerStudent(fName, lName, email, phone, password, age, address, schoolId, gender, dose, city, course,
+                    final String gender = selectedGENDER.getText().toString();
+                    registerStudent(firstname, middlename, lastname, u_email, phoneNumber, u_password, age, u_address, schoolId, gender, dose, city, course,
                                 year_level, vaccine, birthdate);
                     }
                 }
 
 
-            }
-        });
+            });
+
+
 
     }
 
     private void bDate() {
-        bDate = (Button) findViewById(R.id.btn_bDate);
         final Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
@@ -181,12 +203,13 @@ public class RegistrationUser extends AppCompatActivity {
             c.set(Calendar.DAY_OF_MONTH, day);
             editAGE.setText(Integer.toString(calculateAge(c.getTimeInMillis())));
             month = month+1;
-            String birthdate = month+"/"+day+"/"+year;
+            String birth = month+"/"+day+"/"+year;
                         /*
                           ANG KANING 'bDate_Button.setHint(birthdate)' DARI MA CHANGE TONG TEXT
                           FROM "BUTTON NGA WORD" TO "ILANG BIRTHDATE"
                         */
-            bDate.setHint(birthdate);
+            edit_birthdate.setText(birth);
+            bDate.setText(birth);
 
         }
     };
@@ -203,7 +226,7 @@ public class RegistrationUser extends AppCompatActivity {
     }
 
 
-    private void registerStudent(String fName, String lName, String email, String phone, String password, String age, String address,
+    private void registerStudent(String fName, String mName, String lName, String email, String phone, String password, String age, String address,
                                  String schoolId, String gender, String dose, String city, String course, String year_level, String vaccine,
                                  String birthdate) {
 
@@ -218,6 +241,7 @@ public class RegistrationUser extends AppCompatActivity {
                     HashMap<String,String> hashMap = new HashMap<>();
                     hashMap.put("userId",userId);
                     hashMap.put("firstName",fName);
+                    hashMap.put("middleName",mName);
                     hashMap.put("lastName",lName);
                     hashMap.put("phoneNumber",phone);
                     hashMap.put("age",age);

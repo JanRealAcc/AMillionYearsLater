@@ -92,13 +92,15 @@ public class StartActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = Objects.requireNonNull(user).getUid();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance
+                ("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String userId = snapshot.child("userId").getValue(String.class);
                 String firstNameU = snapshot.child("firstName").getValue(String.class);
+                String middleNameU = snapshot.child("middleName").getValue(String.class);
                 String lastNameU = snapshot.child("lastName").getValue(String.class);
                 String phoneNumberU = snapshot.child("phoneNumber").getValue(String.class);
                 String ageU = snapshot.child("age").getValue(String.class);
@@ -114,7 +116,7 @@ public class StartActivity extends AppCompatActivity {
                 String yearLevelU = snapshot.child("yearLevel").getValue(String.class);
 
 
-                String fullName = firstNameU + " " + lastNameU;
+                String fullName = firstNameU + " " + middleNameU + " " + lastNameU;
                 String fullContact = phoneNumberU + " | " + emailU;
                 String welcomeU = "Welcome " + firstNameU + "!";
                 name.setText(fullName);

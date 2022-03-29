@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity{
                 String email = login_email.getText().toString();
                 String password = login_password.getText().toString();
                 if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
-                    Toast.makeText(MainActivity.this,"All field Required! Tsk!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"All field Required!", Toast.LENGTH_LONG).show();
 
                 }else{
                     login(email, password);
@@ -66,6 +66,16 @@ public class MainActivity extends AppCompatActivity{
                 }
             }
         });
+
+        Button scan = findViewById(R.id.btn_scan);
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Scan.class));
+            }
+        });
+
+
 
 
     }

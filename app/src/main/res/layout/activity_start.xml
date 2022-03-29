@@ -25,20 +25,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <TextView
                 android:id="@+id/welcomeText"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:gravity="center"
                 android:paddingHorizontal="30dp"
                 android:text="WELCOME $user!"
                 android:textColor="#efeb00"
                 app:autoSizePresetSizes="@array/autosize_text_sizes"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
             <ImageView
                 android:id="@+id/imageView16"
@@ -50,24 +51,31 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageView15"
-                app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/roundbox" />
 
             <ImageView
                 android:id="@+id/imageView15"
-                android:layout_width="172dp"
-                android:layout_height="181dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/roundshape"
-                tools:ignore="MissingConstraints" />
+                android:layout_width="288dp"
+                android:layout_height="317dp"
+                app:layout_constraintBottom_toBottomOf="@+id/user_QRCODE"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/right"
+                app:layout_constraintStart_toStartOf="@+id/left"
+                app:layout_constraintTop_toTopOf="@+id/user_QRCODE"
+                app:layout_constraintVertical_bias="0.564"
+                app:srcCompat="@drawable/roundshape" />
 
             <ImageView
                 android:id="@+id/user_QRCODE"
-                android:layout_width="230dp"
-                android:layout_height="230dp"
-                app:layout_constraintEnd_toStartOf="@+id/right"
-                app:layout_constraintStart_toStartOf="@+id/left"
-                app:layout_constraintTop_toBottomOf="@+id/welcomeText"
+                android:layout_width="320dp"
+                android:layout_height="320dp"
+                android:layout_marginTop="80dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="@+id/imageView15"
+                app:layout_constraintHorizontal_bias="0.508"
+                app:layout_constraintStart_toStartOf="@+id/imageView15"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/finalblankqr"
                 tools:ignore="MissingConstraints" />
 
@@ -79,10 +87,9 @@
                 android:paddingHorizontal="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/user_QRCODE"
-                app:layout_constraintHorizontal_bias="0.503"
                 app:layout_constraintStart_toStartOf="@+id/user_QRCODE"
                 app:layout_constraintTop_toBottomOf="@+id/save_QRCODE"
-                app:layout_constraintVertical_bias="0.016"
+                app:layout_constraintVertical_bias="0.008"
                 app:srcCompat="@drawable/newbox" />
 
             <TextView
@@ -139,12 +146,17 @@
 
             <TextView
                 android:id="@+id/address_here"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="113dp"
                 android:layout_marginTop="80dp"
+                android:layout_marginEnd="30dp"
+                android:autoSizePresetSizes="@array/autosize_text_sizes"
+                android:gravity="center_vertical"
                 android:text="address_here"
                 android:textColor="#80000000"
                 android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
@@ -273,31 +285,32 @@
                 android:id="@+id/course_here"
                 android:layout_width="match_parent"
                 android:layout_height="16dp"
-                android:layout_marginStart="112dp"
                 android:layout_marginTop="192dp"
-                android:layout_marginEnd="35dp"
-                app:autoSizePresetSizes="@array/autosize_text_sizes"
+                android:layout_marginStart="113dp"
+                android:layout_marginEnd="30dp"
+                android:autoSizePresetSizes="@array/autosize_text_sizes"
                 android:gravity="center_vertical"
                 android:text="course_here"
                 android:textColor="#80000000"
-                app:layout_constraintEnd_toEndOf="@+id/imageView11"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
             <TextView
                 android:id="@+id/contact_here"
                 android:layout_width="match_parent"
-                android:layout_height="16dp"
+                android:layout_height="15dp"
                 android:layout_marginTop="300dp"
-                android:layout_marginStart="112dp"
-                android:layout_marginEnd="35dp"
-                app:autoSizePresetSizes="@array/autosize_text_sizes"
+                android:layout_marginStart="113dp"
+                android:layout_marginEnd="30dp"
+                android:autoSizePresetSizes="@array/autosize_text_sizes"
                 android:gravity="center_vertical"
                 android:text="contacts_and_email_here"
                 android:textColor="#80000000"
-                app:layout_constraintEnd_toEndOf="@+id/imageView11"
-                app:layout_constraintHorizontal_bias="0.859"
-                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
             <TextView
@@ -407,20 +420,20 @@
                 android:text="SIGN OUT"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/user_QRCODE"
-                app:layout_constraintHorizontal_bias="0.648"
                 app:layout_constraintStart_toStartOf="@+id/user_QRCODE"
-                app:layout_constraintTop_toBottomOf="@+id/imageView11"
-                app:layout_constraintVertical_bias="0.261" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
             <Button
                 android:id="@+id/save_QRCODE"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="DOWNLOAD QR CODE"
                 android:textColor="#FFFFFF"
-                app:layout_constraintEnd_toStartOf="@+id/right"
-                app:layout_constraintStart_toStartOf="@+id/left"
-                app:layout_constraintTop_toBottomOf="@+id/user_QRCODE" />
+                app:layout_constraintEnd_toEndOf="@+id/imageView15"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="@+id/imageView15"
+                app:layout_constraintTop_toBottomOf="@+id/imageView15" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/left"
