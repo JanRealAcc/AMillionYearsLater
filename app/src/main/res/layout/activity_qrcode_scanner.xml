@@ -15,4 +15,10 @@
         android:layout_centerInParent="true"
         android:text="Scan" />
 
+    <EditText
+        android:id="@+id/value"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
 </RelativeLayout>

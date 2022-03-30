@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +18,9 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class QRCodeScanner extends AppCompatActivity {
     //Initialize variable
-    private TextView user_id;
+    TextView user_id;
+    EditText value;
+    String text_value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class QRCodeScanner extends AppCompatActivity {
         //Assign variable
         Button btScan = findViewById(R.id.bt_scan);
         user_id = findViewById(R.id.id_here);
+        value = findViewById(R.id.value);
 
         btScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +58,7 @@ public class QRCodeScanner extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //Initialize intent result
-        IntentResult intentResult=IntentIntegrator.parseActivityResult(
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(
                 requestCode,resultCode,data
         );
         //Check condition
@@ -68,16 +72,20 @@ public class QRCodeScanner extends AppCompatActivity {
             builder.setTitle("Result");
             //Set message
             builder.setMessage(intentResult.getContents());
-            //Passing message to Status and set text to ID
-            user_id.setText(intentResult.getContents());
 
-            //Set positive button
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    startActivity(new Intent(QRCodeScanner.this, Status.class));
-                }
-            });
+            if(intentResult.getContents() != null){
+                Intent intent = new Intent(QRCodeScanner.this, Status.class);
+                text_value = intentResult.getContents();
+                intent.putExtra("Value", text_value);
+                startActivity(intent);
+                finish();
+            }else{
+                Toast.makeText(getApplicationContext(),"ERROR!", Toast.LENGTH_SHORT).show();
+            }
+
+
+
+
             //Show alert dialog
             builder.show();
         }else {

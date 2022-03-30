@@ -3,6 +3,7 @@ package com.example.amillionyearslater;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,19 +17,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.Objects;
 
 public class Status extends AppCompatActivity {
 
+    private TextView user_info, user_id;
+    private String userId;
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
 
-        TextView user_info = findViewById(R.id.info_here);
+        user_info = findViewById(R.id.info_here);
+        userId = getIntent().getExtras().getString("Value");
+        user_id = findViewById(R.id.id_here);
+        user_id.setText("RESULT: " + userId);
 
-        TextView user_id = findViewById(R.id.id_here);
-        String userId = user_id.getText().toString();
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance
                 ("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -51,12 +60,19 @@ public class Status extends AppCompatActivity {
                 String birthDateU = snapshot.child("birthDate").getValue(String.class);
                 String yearLevelU = snapshot.child("yearLevel").getValue(String.class);
 
-                String info = firstNameU + " " + middleNameU + " " + lastNameU + "\n" +
-                                    addressU + " " + cityU + "\n" +
-                                    courseU + " " + yearLevelU + schoolIdU + "\n" +
-                                    vaccineU + " " + vaccineDosageU + "\n" +
-                                    ageU + "y/o" + " " + genderU + birthDateU +"\n" +
-                                    phoneNumberU + " " + emailU;
+                String info = firstNameU + " " + middleNameU + " " + lastNameU + "\n" +" \n" +
+                                    addressU + "\n" + "\n" +
+                                    cityU + "\n" + "\n" +
+                                    courseU + "\n" + "\n" +
+                                    yearLevelU + "\n" + "\n" +
+                                    schoolIdU + "\n" + "\n" +
+                                    vaccineU + "\n" +"\n" +
+                                    vaccineDosageU + "\n" + "\n" +
+                                    ageU + "y/o" + "\n" + "\n" +
+                                    genderU + "\n" + "\n" +
+                                    birthDateU +"\n" + "\n" +
+                                    phoneNumberU + "\n" + "\n" +
+                                    emailU;
 
                 user_info.setText(info);
 

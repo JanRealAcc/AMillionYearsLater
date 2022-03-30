@@ -7,6 +7,7 @@
     android:background="@drawable/backgroundcoc"
     tools:context=".Scan">
 
+
     <EditText
         android:id="@+id/et_code"
         android:layout_width="match_parent"
