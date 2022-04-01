@@ -26,12 +26,13 @@ public class Scan extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                final String password = "janrylle";
+                final String password = "010702";
                 final String code = passcode.getText().toString();
                 Toast.makeText(Scan.this, "THIS IS FOR ADMINS ONLY!", Toast.LENGTH_LONG).show();
                 if (code.equals(password)){
                     startActivity(new Intent(Scan.this, QRCodeScanner.class));
                     Toast.makeText(Scan.this, "YOU HAVE ENTERED AS ADMIN", Toast.LENGTH_LONG).show();
+                    finish();
                 }else{
                     Toast.makeText(Scan.this, "Incorrect code! Try again!", Toast.LENGTH_LONG).show();
                 }

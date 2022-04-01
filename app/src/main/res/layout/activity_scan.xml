@@ -18,9 +18,12 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="271dp"
         android:layout_marginRight="40dp"
+        android:background="@color/white"
         android:hint="ENTER CODE"
         android:inputType="textPassword"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="#FF5C5C5C"
+        android:textColorHint="#FF5C5C5C" />
 
     <Button
         android:id="@+id/btn_code_submit"

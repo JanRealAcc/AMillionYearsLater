@@ -11,6 +11,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -93,7 +94,8 @@ public class StartActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = Objects.requireNonNull(user).getUid();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance
-                ("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId);
+                ("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Users").child(userId);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -168,6 +170,15 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+        Button exit_btn = (Button) findViewById(R.id.signout);
+        exit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(StartActivity.this, MainActivity.class));
+                finish();
+            }
+        });
+
 
     }
 
@@ -176,68 +187,69 @@ public class StartActivity extends AppCompatActivity {
     private Bitmap downloadBitmap(String fullQrCode) {
         BitMatrix result = null;
         try {
-            result = new MultiFormatWriter().encode(fullQrCode, BarcodeFormat.QR_CODE, 1000,1000,null);
-        } catch (WriterException e){
+            result = new MultiFormatWriter().encode(fullQrCode, BarcodeFormat.QR_CODE, 1000, 1000, null);
+        } catch (WriterException e) {
             e.printStackTrace();
             return null;
         }
         int width = result.getWidth();
         int height = result.getHeight();
         int[] pixels = new int[width * height];
-        for (int x=0; x<height; x++){
-            int offset= x * width;
-            for (int k=0; k<width; k++){
-                pixels[offset + k] = result.get(k, x) ? BLACK : WHITE ;
+        for (int x = 0; x < height; x++) {
+            int offset = x * width;
+            for (int k = 0; k < width; k++) {
+                pixels[offset + k] = result.get(k, x) ? BLACK : WHITE;
             }
         }
         Bitmap myBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        myBitmap.setPixels(pixels,0, width,0,0, width, height);
-            //setting bitmap to image view
-            Bitmap overlay = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+        myBitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+        //setting bitmap to image view
+        Bitmap overlay = BitmapFactory.decodeResource(getResources(), R.drawable.logofinal);
 
-            return mergeBitmaps(overlay, myBitmap);
+        return mergeBitmaps(overlay, myBitmap);
 
     }
-    private Bitmap mergeBitmaps(Bitmap overlay, Bitmap myBitmap){
 
-            int height = myBitmap.getHeight();
-            int width = myBitmap.getWidth();
+    private Bitmap mergeBitmaps(Bitmap overlay, Bitmap myBitmap) {
 
-            Bitmap combined = Bitmap.createBitmap(width, height, myBitmap.getConfig());
-            Canvas canvas = new Canvas(combined);
-            int canvasWidth = canvas.getWidth();
-            int canvasHeight = canvas.getHeight();
+        int height = myBitmap.getHeight();
+        int width = myBitmap.getWidth();
 
-            canvas.drawBitmap(myBitmap, new Matrix(), null);
+        Bitmap combined = Bitmap.createBitmap(width, height, myBitmap.getConfig());
+        Canvas canvas = new Canvas(combined);
+        int canvasWidth = canvas.getWidth();
+        int canvasHeight = canvas.getHeight();
 
-            int centreX = (canvasWidth - overlay.getWidth()) / 2;
-            int centreY = (canvasHeight - overlay.getHeight()) / 2;
-            canvas.drawBitmap(overlay, centreX, centreY, null);
+        canvas.drawBitmap(myBitmap, new Matrix(), null);
 
-            return combined;
-        }
+        int centreX = (canvasWidth - overlay.getWidth()) / 2;
+        int centreY = (canvasHeight - overlay.getHeight()) / 2;
+        canvas.drawBitmap(overlay, centreX, centreY, null);
+
+        return combined;
+    }
 
 
     //QR TO DOWNLOADABLE IMAGE
     private Bitmap displayBitmap(String fullQrCode) {
         BitMatrix result = null;
         try {
-            result = new MultiFormatWriter().encode(fullQrCode, BarcodeFormat.QR_CODE, 1000,1000,null);
-        } catch (WriterException e){
+            result = new MultiFormatWriter().encode(fullQrCode, BarcodeFormat.QR_CODE, 1000, 1000, null);
+        } catch (WriterException e) {
             e.printStackTrace();
             return null;
         }
         int width = result.getWidth();
         int height = result.getHeight();
         int[] pixels = new int[width * height];
-        for (int x=0; x<height; x++){
-            int offset= x * width;
-            for (int k=0; k<width; k++){
-                pixels[offset + k] = result.get(k, x) ? BLACK : TRANSPARENT ;
+        for (int x = 0; x < height; x++) {
+            int offset = x * width;
+            for (int k = 0; k < width; k++) {
+                pixels[offset + k] = result.get(k, x) ? BLACK : TRANSPARENT;
             }
         }
         Bitmap myBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        myBitmap.setPixels(pixels,0, width,0,0, width, height);
+        myBitmap.setPixels(pixels, 0, width, 0, 0, width, height);
 
         return myBitmap;
 
@@ -246,86 +258,52 @@ public class StartActivity extends AppCompatActivity {
 
     //PERMISSION
     private void askPermission() {
-        ActivityCompat.requestPermissions(StartActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        ActivityCompat.requestPermissions(StartActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
 
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 1)
-        {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 saveToGallery();
-            }else {
-                Toast.makeText(StartActivity.this,"Please provide the required permissions",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(StartActivity.this, "Please provide the required permissions", Toast.LENGTH_SHORT).show();
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     //DOWNLOAD QRCODE
-    private void saveToGallery(){
+    private void saveToGallery() {
 
-            File dir =  Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 
-            if(!dir.exists()){
-                dir.mkdirs();
-            }
-
-            BitmapDrawable drawable = (BitmapDrawable) download_QRCODE.getDrawable();
-            Bitmap bitmap = drawable.getBitmap();
-            File file = new File(dir, System.currentTimeMillis()+".png");
-            try {
-               outputStream = new FileOutputStream(file);
-             } catch (FileNotFoundException e) {
-               e.printStackTrace();
-            }
-            bitmap.compress(Bitmap.CompressFormat.PNG,100,outputStream);
-            Toast.makeText(StartActivity.this, "QR code saved!", Toast.LENGTH_SHORT).show();
-
-            try{
-                outputStream.flush();
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-            try {
-            outputStream.close();
-            } catch (IOException e) {
-            e.printStackTrace();
+        if (!dir.exists()) {
+            dir.mkdirs();
         }
 
-
-
-
-
-
-       /* BitmapDrawable bitmapDrawable = (BitmapDrawable) qrCODE_image.getDrawable();
-        Bitmap bitmap = bitmapDrawable.getBitmap();
-
-        FileOutputStream outputStream = null;
-        File file = Environment.getExternalStorageDirectory();
-        File dir = new File(file.getAbsolutePath() + "/MyPics");
-        dir.exists();
-
-        String filename = String.format("%d.png",System.currentTimeMillis());
-        File outFile = new File(dir,filename);
-        try{
-            outputStream = new FileOutputStream(outFile);
-        }catch (Exception e){
+        BitmapDrawable drawable = (BitmapDrawable) download_QRCODE.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+        File file = new File(dir, System.currentTimeMillis() + ".png");
+        try {
+            outputStream = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        bitmap.compress(Bitmap.CompressFormat.PNG,100,outputStream);
-        try{
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+        Toast.makeText(StartActivity.this, "QR code saved! (Internal Storage/Pictures/.png)", Toast.LENGTH_LONG).show();
+
+        try {
             outputStream.flush();
-        }catch (Exception e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        try{
+        try {
             outputStream.close();
-        }
-        catch (Exception e){
+        } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 }
 

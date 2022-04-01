@@ -1,5 +1,6 @@
 package com.example.amillionyearslater;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,11 +17,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class QRCodeScanner extends AppCompatActivity {
     //Initialize variable
-    TextView user_id;
-    EditText value;
-    String text_value;
+    private TextView user_id;
+    private EditText value;
+    private String text_value, text_time, name_time;
+    private SimpleDateFormat simpleDateFormat, nameDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +35,17 @@ public class QRCodeScanner extends AppCompatActivity {
 
         //Assign variable
         Button btScan = findViewById(R.id.bt_scan);
+        Button btLog = findViewById(R.id.bt_logbook);
         user_id = findViewById(R.id.id_here);
         value = findViewById(R.id.value);
+
+        btLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(QRCodeScanner.this, LogBookList.class));
+            }
+        });
+
 
         btScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +69,7 @@ public class QRCodeScanner extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("SimpleDateFormat")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -76,15 +92,16 @@ public class QRCodeScanner extends AppCompatActivity {
             if(intentResult.getContents() != null){
                 Intent intent = new Intent(QRCodeScanner.this, Status.class);
                 text_value = intentResult.getContents();
-                intent.putExtra("Value", text_value);
+                Calendar dateCurrent = Calendar.getInstance();
+                simpleDateFormat = new SimpleDateFormat("E, MMM dd yyyy hh:mm:ssa");
+                text_time = simpleDateFormat.format(dateCurrent.getTime());
+                intent.putExtra("Time_scan", text_time);
+                intent.putExtra("QR_scan", text_value);
                 startActivity(intent);
                 finish();
             }else{
                 Toast.makeText(getApplicationContext(),"ERROR!", Toast.LENGTH_SHORT).show();
             }
-
-
-
 
             //Show alert dialog
             builder.show();

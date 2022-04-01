@@ -19,12 +19,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Status extends AppCompatActivity {
 
-    private TextView user_info, user_id;
-    private String userId;
+    private TextView user_info, user_id, user_time, Name_Title;
+    private String userId, userTime, fullInfo;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -33,14 +35,27 @@ public class Status extends AppCompatActivity {
         setContentView(R.layout.activity_status);
 
         user_info = findViewById(R.id.info_here);
-        userId = getIntent().getExtras().getString("Value");
+        userTime = getIntent().getExtras().getString("Time_scan");
+        user_time = findViewById(R.id.time_here);
+        user_time.setText(userTime);
+        userId = getIntent().getExtras().getString("QR_scan");
         user_id = findViewById(R.id.id_here);
         user_id.setText("RESULT: " + userId);
+        Name_Title = findViewById(R.id.name_title);
 
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance
-                ("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId);
-        databaseReference.addValueEventListener(new ValueEventListener() {
+
+
+
+        DatabaseReference getInfo = FirebaseDatabase.getInstance
+                ("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Users").child(userId);
+        DatabaseReference addTime = FirebaseDatabase.getInstance
+                ("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Users").child("LOGBOOK").child(userTime);
+
+
+        getInfo.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -60,6 +75,8 @@ public class Status extends AppCompatActivity {
                 String birthDateU = snapshot.child("birthDate").getValue(String.class);
                 String yearLevelU = snapshot.child("yearLevel").getValue(String.class);
 
+
+                //FOR STATUS
                 String info = firstNameU + " " + middleNameU + " " + lastNameU + "\n" +" \n" +
                                     addressU + "\n" + "\n" +
                                     cityU + "\n" + "\n" +
@@ -76,6 +93,37 @@ public class Status extends AppCompatActivity {
 
                 user_info.setText(info);
 
+
+
+                //FOR LOGBOOK
+                String info_logbook = "\n" + firstNameU + " " + middleNameU + " " + lastNameU + "\n" +
+                        addressU + "\n" +
+                        cityU + "\n" +
+                        courseU + "\n" +
+                        yearLevelU + "\n" +
+                        schoolIdU + "\n" +
+                        vaccineU + "\n" +
+                        vaccineDosageU + "\n" +
+                        ageU + "y/o" + "\n" +
+                        genderU + "\n" +
+                        birthDateU +"\n" +
+                        phoneNumberU + "\n" +
+                        emailU;
+
+                addTime.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        String final_userTime = "THIS STUDENT ENTERS @" + userTime + " " + info_logbook;
+                        HashMap<String,String> hashMap = new HashMap<>();
+                        hashMap.put("TimeAndDate", final_userTime);
+                        addTime.setValue(hashMap);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+
             }
 
             @Override
@@ -85,12 +133,14 @@ public class Status extends AppCompatActivity {
         });
 
 
+
         //SCAN AGAIN BUTTON
         Button scanCam = (Button) findViewById(R.id.scanCam);
         scanCam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Status.this, QRCodeScanner.class));
+                finish();
             }
         });
 

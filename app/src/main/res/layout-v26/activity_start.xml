@@ -96,7 +96,7 @@
                 android:id="@+id/qrcode_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="88dp"
+                android:layout_marginBottom="44dp"
                 android:text="qrcode_here"
                 android:textColor="#40000000"
                 android:textSize="10dp"
@@ -116,6 +116,7 @@
                 android:gravity="center"
                 android:text="EDIT PROFILE"
                 android:textColor="@color/white"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView11"
                 app:layout_constraintEnd_toEndOf="@+id/imageView16"
                 app:layout_constraintStart_toStartOf="@+id/imageView16" />
@@ -414,7 +415,7 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/signout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SIGN OUT"

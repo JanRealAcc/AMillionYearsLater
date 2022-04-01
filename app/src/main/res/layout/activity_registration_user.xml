@@ -52,7 +52,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="First Name:" />
+                android:text="First Name:"
+                android:textColor="#FFCACACA"/>
 
 
 
@@ -62,13 +63,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="Ex. Janrylle"/>
+                android:textColor="@color/white"
+                android:backgroundTint="#CACACA"
+                android:hint="Ex. Juan"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Middle Name:" />
+                android:text="Middle Name:"
+                android:textColor="#FFCACACA"/>
 
             <EditText
                 style="@style/Theme.Material3.DynamicColors.Dark"
@@ -76,12 +80,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="Ex. Quiño"/>
+                android:hint="Ex. Dela"
+                android:textColor="@color/white"
+                android:backgroundTint="#FFCACACA"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textColor="#FFCACACA"
                 android:text="Last Name:"/>
 
             <EditText
@@ -89,7 +96,9 @@
                 android:id="@+id/et_lName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ex. Espinosa"
+                android:hint="Ex. Cruz"
+                android:textColor="@color/white"
+                android:backgroundTint="#FFCACACA"
                 android:inputType="textPersonName"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -97,7 +106,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Email Address:" />
+                android:text="Email Address:"
+                android:textColor="#FFCACACA"/>
 
             <EditText
                 style="@style/Theme.Material3.DynamicColors.Dark"
@@ -105,12 +115,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:hint="Ex. jaqu.espinosa.coc@phinmaed.com"/>
+                android:textColor="@color/white"
+                android:hint="Please use your PHINMAED email"
+                android:backgroundTint="#FFCACACA" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Phone:" />
+                android:text="Phone:"
+                android:textColor="#FFCACACA"/>
 
             <EditText
                 style="@style/Theme.Material3.DynamicColors.Dark"
@@ -118,13 +131,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="Ex. 09123456789"/>
+                android:hint="Ex. 09123456789"
+                android:backgroundTint="#FFCACACA"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Password:" />
+                android:text="Password:"
+                android:textColor="#FFCACACA"/>
 
             <EditText
                 style="@style/Theme.Material3.DynamicColors.Dark"
@@ -132,13 +148,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:backgroundTint="#FFCACACA"
+                android:textColor="@color/white"
                 tools:ignore="SpeakableTextPresentCheck"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Age:" />
+                android:text="Age:"
+                android:textColor="#FFCACACA"/>
 
             <EditText
                 style="@style/Theme.Material3.DynamicColors.Dark"
@@ -147,18 +166,22 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:hint="Please Select Your Birthdate"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck"
+                android:backgroundTint="#FFCACACA"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Birthdate:" />
+                android:text="Birthdate:"
+                android:textColor="#FFCACACA"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="SELECT DATE"
+                android:focusable="true"
                 android:textColorHint="@color/white"
                 android:textColor="@color/white"
                 android:backgroundTint="#FF001917"
@@ -175,7 +198,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Gender:" />
+                android:text="Gender:"
+                android:textColor="#FFCACACA"/>
 
             <RadioGroup
                 android:id="@+id/radio_gender"
@@ -186,13 +210,17 @@
                     android:id="@+id/radio_male"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Male" />
+                    android:text="Male"
+                    android:focusable="true"
+                    android:textColor="#FFCACACA"/>
 
                 <RadioButton
                     android:id="@+id/radio_female"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Female" />
+                    android:text="Female"
+                    android:focusable="true"
+                    android:textColor="#FFCACACA"/>
 
             </RadioGroup>
 
@@ -200,25 +228,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Address:" />
+                android:text="Address:"
+                android:textColor="#FFCACACA"/>
 
             <EditText
                 style="@style/Theme.Material3.DynamicColors.Dark"
                 android:id="@+id/et_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:inputType="text"
+                android:backgroundTint="#FFCACACA"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Municipality:" />
+                android:text="Municipality:"
+                android:textColor="@color/white"/>
 
             <Spinner
                 android:id="@+id/spin_city"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:focusable="true"
+                android:backgroundTint="#FFCACACA"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -237,7 +271,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="School ID:" />
+                android:text="School ID:"
+                android:textColor="#FFCACACA"/>
 
             <EditText
                 style="@style/Theme.Material3.DynamicColors.Dark"
@@ -245,29 +280,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="Ex. 02181900743"/>
+                android:hint="Ex. 02181900743"
+                android:textColor="@color/white"
+                android:backgroundTint="#FFCACACA"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Course:" />
+                android:text="Course:"
+                android:textColor="#FFCACACA"/>
 
             <Spinner
                 android:id="@+id/spin_course"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:focusable="true"
+                android:backgroundTint="#FFCACACA"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Year Level:" />
+                android:text="Year Level:"
+                android:textColor="#FFCACACA"
+                />
 
             <Spinner
                 android:id="@+id/spin_yearLevel"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:focusable="true"
+                android:backgroundTint="#FFCACACA"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -284,18 +328,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Vaccine:" />
+                android:text="Vaccine:"
+                android:textColor="#FFCACACA"/>
 
             <Spinner
                 android:id="@+id/spin_vaccine"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:backgroundTint="#FFCACACA"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="No. of Dose:" />
+                android:text="No. of Dose: *Select the first dose if you are vaccinated with Janssen (with no booster)."
+                android:textColor="#FFCACACA"/>
 
             <RadioGroup
                 android:id="@+id/radio_dose"
@@ -306,19 +353,25 @@
                     android:id="@+id/radio_firstDose"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1st Dose" />
+                    android:text="1st Dose"
+                    android:focusable="true"
+                    android:textColor="#FFCACACA"/>
 
                 <RadioButton
                     android:id="@+id/radio_secondDose"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2nd Dose" />
+                    android:text="2nd Dose"
+                    android:focusable="true"
+                    android:textColor="#FFCACACA"/>
 
                 <RadioButton
                     android:id="@+id/radio_fullVaccine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Fully Vaccinated + Booster"/>
+                    android:focusable="true"
+                    android:text="Fully Vaccinated + Booster"
+                    android:textColor="#FFCACACA"/>
             </RadioGroup>
 
             <ProgressBar
@@ -334,6 +387,7 @@
                 android:height="50dp"
                 android:layout_marginBottom="50dp"
                 android:text="Submit"
+                android:focusable="true"
                 android:textColor="@color/white"/>
 
 

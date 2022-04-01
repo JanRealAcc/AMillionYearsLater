@@ -17,15 +17,21 @@
         <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/drawable/shadoiw.xml" value="0.2165" />
         <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/font/anton.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/font/montserrat.xml" value="0.23958333333333334" />
-        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout-v26/activity_start.xml" value="0.282899366643209" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout-v26/activity_start.xml" value="0.5" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_forgot_password.xml" value="0.22" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_log_book.xml" value="0.33" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_log_book_list.xml" value="0.3140625" />
         <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_qrcode_scanner.xml" value="0.3140625" />
-        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_registration_user.xml" value="0.21497326203208555" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_registration_user.xml" value="0.67" />
         <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_scan.xml" value="0.5" />
         <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_start.xml" value="0.41875" />
         <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_start_qrcode.xml" value="0.2764786795048143" />
-        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_status.xml" value="0.22" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_status.xml" value="0.5" />
         <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/activity_test1.xml" value="0.25" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/item.xml" value="0.33" />
+        <entry key="..\:/Users/Espinosa/AndroidStudioProjects/AMillionYearsLater/app/src/main/res/layout/my_selected_item.xml" value="0.3140625" />
+        <entry key="..\:/Users/Espinosa/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_item.xml" value="0.3140625" />
       </map>
     </option>
   </component>

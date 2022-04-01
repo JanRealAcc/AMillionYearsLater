@@ -1,18 +1,23 @@
 package com.example.amillionyearslater;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
@@ -26,7 +31,7 @@ public class MainActivity extends AppCompatActivity{
 
 
     private TextInputEditText login_email, login_password;
-    private TextView register;
+    private TextView register, forgot_password;
     ProgressBar progressLOADING;
     private FirebaseAuth mAuth;
 
@@ -37,10 +42,10 @@ public class MainActivity extends AppCompatActivity{
 
         mAuth = FirebaseAuth.getInstance();
 
-        login_email = (TextInputEditText) findViewById(R.id.login_email);
-        login_password = (TextInputEditText) findViewById(R.id.login_password);
-        progressLOADING = (ProgressBar) findViewById(R.id.progressLOADING);
-        TextView forgot_password = (TextView) findViewById(R.id.forgot_password);
+        login_email = findViewById(R.id.login_email);
+        login_password = findViewById(R.id.login_password);
+        progressLOADING = findViewById(R.id.progressLOADING);
+        forgot_password = findViewById(R.id.forgot_password);
 
         register = findViewById(R.id.edit_register);
         register.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +55,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-
+        //LOGIN BUTTON
         Button submitLOGIN = (Button) findViewById(R.id.button);
         submitLOGIN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +72,21 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        //FORGOT PASSWORD BUTTON
+        forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ForgotPassword.class));
+
+            }
+        });
+
+
+
+
+
+
+        //SCAN BUTTON
         Button scan = findViewById(R.id.btn_scan);
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +116,8 @@ public class MainActivity extends AppCompatActivity{
                     Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
+
+
         });
 
     }

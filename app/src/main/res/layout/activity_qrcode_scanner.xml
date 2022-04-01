@@ -8,12 +8,37 @@
     android:background="@drawable/backgroundcoc"
     tools:context=".QRCodeScanner">
 
+    <TextView
+        android:id="@+id/text_time"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="DataTime_Here"
+        android:visibility="gone"/>
+
+
     <Button
         android:id="@+id/bt_scan"
         android:layout_width="154dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="236dp"
+        android:layout_marginEnd="103dp"
         android:text="Scan" />
+
+    <Button
+        android:id="@+id/bt_logbook"
+        android:layout_width="154dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bt_scan"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="103dp"
+        android:text="logbook" />
 
     <EditText
         android:id="@+id/value"

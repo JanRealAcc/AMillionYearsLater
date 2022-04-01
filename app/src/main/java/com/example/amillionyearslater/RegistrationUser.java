@@ -36,14 +36,12 @@ import java.util.Objects;
 
 public class RegistrationUser extends AppCompatActivity {
 
-    private TextView banner;
     private EditText editFNAME, editLNAME, editMNAME, editEMAIL, editPHONE, editPASSWORD, editAGE, editADDRESS, editSCHOOLID;
     private EditText edit_birthdate;
     private ProgressBar progressLoading;
     private Button bDate;
     private DatabaseReference databaseReference;
     private DatePickerDialog dateDialog;
-    private FirebaseDatabase database;
 
 
     private FirebaseAuth mAuth;
@@ -59,25 +57,25 @@ public class RegistrationUser extends AppCompatActivity {
 
         //municipality selection
         Spinner spinnerCities = (Spinner) findViewById(R.id.spin_city);
-        ArrayAdapter<CharSequence> adapterCities = ArrayAdapter.createFromResource(this, R.array.municipality, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterCities = ArrayAdapter.createFromResource(this, R.array.municipality, R.layout.my_selected_item);
         adapterCities.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCities.setAdapter(adapterCities);
 
         //course selection
         Spinner spinnerCourse = (Spinner) findViewById(R.id.spin_course);
-        ArrayAdapter<CharSequence> adapterCourse = ArrayAdapter.createFromResource(this, R.array.course, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterCourse = ArrayAdapter.createFromResource(this, R.array.course, R.layout.my_selected_item);
         adapterCourse.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCourse.setAdapter(adapterCourse);
 
         //year level selection
         Spinner spinnerYearLevel = (Spinner) findViewById(R.id.spin_yearLevel);
-        ArrayAdapter<CharSequence> adapterYearLevel = ArrayAdapter.createFromResource(this, R.array.yearLevel, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterYearLevel = ArrayAdapter.createFromResource(this, R.array.yearLevel, R.layout.my_selected_item);
         adapterYearLevel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerYearLevel.setAdapter(adapterYearLevel);
 
         //vaccine selection
         Spinner spinnerVaccines = (Spinner) findViewById(R.id.spin_vaccine);
-        ArrayAdapter<CharSequence> adapterVaccines = ArrayAdapter.createFromResource(this, R.array.vaccines, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterVaccines = ArrayAdapter.createFromResource(this, R.array.vaccines, R.layout.my_selected_item);
         adapterVaccines.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerVaccines.setAdapter(adapterVaccines);
 
@@ -218,7 +216,7 @@ public class RegistrationUser extends AppCompatActivity {
         dob.setTimeInMillis(date);
 
         Calendar today = Calendar.getInstance();
-        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR) + 1;
         if(today.get(Calendar.DAY_OF_MONTH) < dob.get(Calendar.DAY_OF_MONTH)){
             age--;
         }
@@ -237,7 +235,9 @@ public class RegistrationUser extends AppCompatActivity {
                     FirebaseUser rUser = mAuth.getCurrentUser();
                     assert rUser != null;
                     String userId = rUser.getUid();
-                    databaseReference = FirebaseDatabase.getInstance("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Users").child(userId);
+                    databaseReference = FirebaseDatabase.getInstance
+                            ("https://amillionyearslater-7935e-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                            .getReference("Users").child(userId);
                     HashMap<String,String> hashMap = new HashMap<>();
                     hashMap.put("userId",userId);
                     hashMap.put("firstName",fName);
@@ -256,7 +256,6 @@ public class RegistrationUser extends AppCompatActivity {
                     hashMap.put("vaccine",vaccine);
                     hashMap.put("vaccineDosage",dose);
                     hashMap.put("birthDate", birthdate);
-                    hashMap.put("imageURL","default");
                     databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
